@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self'">
+<title>BloxMind</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<div class="px">
+<div class="grain" aria-hidden="true"></div>
+<div class="tbar" id="tbar" hidden><span>BloxMind</span><div><button type="button" id="tmin" aria-label="Minimize">–</button><button type="button" id="tmax" aria-label="Maximize">▢</button><button type="button" id="tcl" class="x" aria-label="Close">✕</button></div></div>
+<div class="shell">
+  <aside class="side" id="side">
+    <div class="sbm"><svg viewBox="0 0 34 34" aria-hidden="true"><polygon points="17,3 30,10 17,17 4,10" fill="#fff"/><polygon points="4,10 17,17 17,31 4,24" fill="#8a8a8a"/><polygon points="30,10 17,17 17,31 30,24" fill="#444"/></svg></div>
+    <button class="nb" type="button" data-go="home" title="Home" aria-label="Home"><svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg></button>
+    <button class="nb" type="button" data-go="snip" title="Snippets" aria-label="Snippets"><svg viewBox="0 0 24 24"><path d="M8 8l-5 4 5 4M16 8l5 4-5 4M14 5l-4 14"/></svg></button>
+    <i class="sep"></i>
+    <div class="smw" id="smodels"></div>
+    <span class="grow"></span>
+    <button class="nb" type="button" id="pin" title="Keep on top" aria-label="Keep on top" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M9 3h6l-1 6 3 3v2H7v-2l3-3zM12 14v7"/></svg></button>
+    <button class="nb" type="button" id="palb" title="Command palette (Ctrl+K)" aria-label="Command palette"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg></button>
+  </aside>
+  <main class="main">
+    <div class="mhead"><div class="ht" id="htitle"></div><div class="hact" id="hact" hidden><button class="ghost" type="button" id="hreload">Reload</button><button class="ghost" type="button" id="hext">Open in browser</button></div></div>
+    <div class="stage">
+      <section class="view" id="v-home">
+        <div class="hero2">
+          <div>
+            <div class="brand wm" data-wm="BloxMind" role="img" aria-label="BloxMind"></div>
+            <h1 id="h1">What will you <em>build</em> today?</h1>
+            <p class="lead">Pick a model, describe it, launch Studio.</p>
+          </div>
+          <div class="sc" id="sc">
+            <div class="sstat"><i class="sdot" id="sdot" data-s="unk"></i><span id="stxt">Roblox Studio</span></div>
+            <div class="smrow"><span class="sml">Model for Studio</span><div class="smc" id="smc" role="radiogroup" aria-label="Model for Studio"></div></div>
+            <button class="launch" id="launch" type="button"><svg viewBox="0 0 34 34" aria-hidden="true"><polygon points="17,3 30,10 17,17 4,10" fill="#000"/><polygon points="4,10 17,17 17,31 4,24" fill="#555"/><polygon points="30,10 17,17 17,31 30,24" fill="#999"/></svg><span id="lbl">Launch Roblox Studio</span><b>↗</b></button>
+            <p class="shint">A BloxMind panel appears in Studio under Plugins. Send scripts and errors to the model, paste code back.</p>
+            <div class="qa2"><button class="ghost" type="button" id="qerr">Fix last Studio error <small>beta</small></button><button class="ghost" type="button" data-url="https://create.roblox.com/">Creator Hub</button><button class="ghost" type="button" data-url="https://create.roblox.com/docs">Docs</button></div>
+          </div>
+        </div>
+        <div class="sl">Choose a model</div>
+        <div class="mgrid" id="mgrid"></div>
+        <div class="sl">Recent prompts</div>
+        <div class="recent" id="recent"></div>
+      </section>
+
+      <section class="view" id="v-snip" hidden>
+        <div class="sn-top"><input id="snq" class="inp" placeholder="Search snippets: door, coin, teleport…" aria-label="Search snippets" spellcheck="false"></div>
+        <div class="sgrid" id="sgrid"></div>
+      </section>
+
+      <section class="view chat" id="v-chat" hidden>
+        <div class="wvs" id="wvs"></div>
+        <div class="comp">
+          <div class="crow"><div class="chips" id="chips" role="group" aria-label="Task type"></div><div class="cmpw"><button class="chip" type="button" id="cmpb" aria-pressed="false">Compare</button><select id="cmps" class="sel" hidden aria-label="Compare with"></select></div></div>
+          <div class="box">
+            <div class="ur" id="ur">
+              <svg class="rh" viewBox="0 0 40 40" aria-hidden="true"><rect x="2" y="2" width="36" height="36" rx="9" fill="#F5CD30"/><rect x="6" y="5" width="12" height="4" rx="2" fill="#fff" opacity=".3"/><g class="eyes"><rect x="11.5" y="14" width="4.2" height="8" rx="2.1" fill="#1b1b1b"/><rect x="24.3" y="14" width="4.2" height="8" rx="2.1" fill="#1b1b1b"/></g><path d="M11.5 27c2.2 3.8 14.8 3.8 17 0" stroke="#1b1b1b" stroke-width="2.4" fill="none" stroke-linecap="round"/></svg>
+              <textarea id="q" rows="2" spellcheck="false" aria-label="Your request"></textarea>
+              <button class="send" id="send" type="button" disabled><span id="sendt">Send</span> ↗</button>
+            </div>
+            <div class="bar2"><button class="ghost" type="button" id="paste">Paste from clipboard</button><span id="cnt">0</span></div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
+
+<div class="pal" id="pal" hidden><div class="pbox"><input id="pq" class="inp" placeholder="Type a command…" aria-label="Command" spellcheck="false"><ul id="pl"></ul></div></div>
+
+<div class="lo" id="lo" hidden>
+  <div class="lc">
+    <div class="orb"><i></i><i></i><i></i><svg class="lmark" viewBox="0 0 34 34" aria-hidden="true"><polygon points="17,3 30,10 17,17 4,10" fill="#fff"/><polygon points="4,10 17,17 17,31 4,24" fill="#8a8a8a"/><polygon points="30,10 17,17 17,31 30,24" fill="#444"/></svg></div>
+    <h2 id="lh">Launching <em>Roblox Studio</em></h2>
+    <p class="ls" id="ls"></p>
+    <div class="lbar"><i id="lbar"></i></div>
+    <div class="lbtns" id="lbtns" hidden><button class="ghost2" id="lget" type="button" hidden>Get Roblox Studio</button><button class="ghost2" id="lclose" type="button">Back</button></div>
+  </div>
+</div>
+<div class="toast" id="toast" role="status"></div>
+</div>
+<script src="models.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+{
+  "name": "bloxmind",
+  "version": "1.1.0",
+  "description": "BloxMind: every AI for Roblox Studio",
+  "main": "main.js",
+  "author": "BloxMind",
+  "license": "UNLICENSED",
+  "private": true,
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder --win portable --publish never"
+  },
+  "devDependencies": {
+    "electron": "33.2.0",
+    "electron-builder": "25.1.8"
+  },
+  "build": {
+    "appId": "com.bloxmind.app",
+    "productName": "BloxMind",
+    "directories": { "output": "dist" },
+    "files": ["main.js", "preload.js", "renderer/**/*", "plugin/**/*", "build/icon.png", "package.json"],
+    "win": { "target": "portable", "icon": "build/icon.png" },
+    "portable": { "artifactName": "BloxMind.exe" }
+  }
+}
