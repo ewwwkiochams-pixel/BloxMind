@@ -41,15 +41,7 @@ BloxMind — приложение для Windows для разработчико
 
 Нужна Windows 10 или новее.
 
-## Сборка из исходников
 
-```bash
-npm install
-npm start
-npm run build
-```
-
-Без Node.js: загрузи репозиторий на GitHub, открой **Actions → Build BloxMind.exe → Run workflow** и скачай результат. Тег вида `v1.2.0` публикует `BloxMind.exe` в релизах.
 
 ## Важно
 
