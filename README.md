@@ -86,17 +86,6 @@ The plugin only talks to the app on your own computer (`127.0.0.1`). Requests ar
 | Llama | Meta | Quick questions, brainstorming |
 | Mistral | Mistral AI | Fast edits, snippets, multilingual |
 
-## Build from source
-
-You need [Node.js](https://nodejs.org/) 20 or newer.
-
-```bash
-npm install
-npm start          # run the app
-npm run build      # build dist/BloxMind.exe (portable)
-```
-
-No Node.js? Push this repository to GitHub, open **Actions → Build BloxMind.exe → Run workflow**, then download the `BloxMind-exe` artifact. Pushing a tag such as `v1.2.0` also publishes `BloxMind.exe` as a release.
 
 ## FAQ
 
