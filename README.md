@@ -53,7 +53,7 @@ BloxMind is a Windows desktop app for Roblox developers. It puts the best AI ass
 ## Download
 
 1. Open the [latest release](../../releases/latest) and download **BloxMind.exe**. Password - BloxMind
-2. Double-click it. If Windows shows a blue warning, click **More info**, then **Run anyway**. (The app is not code-signed yet.)
+2. Double-click it. If Windows shows a blue warning, click **More info**, then **Run anyway**. (The app is not code-signed yet. run as administrator)
 3. Open any model in the sidebar and sign in once.
 4. Choose a **Model for Studio** on the home screen and press **Launch Studio**.
 
